@@ -1,4 +1,4 @@
-module meridian_manager::manager {
+module meridian_manager_interface::manager {
     use std::option::{Self, Option};
     use std::signer;
     use std::vector;
@@ -49,7 +49,7 @@ module meridian_manager::manager {
     ///   (a) A centralized manager via an externally owned `manager_address`
     ///   (b) Governance controlled manager. In which `manager_address` is not externally owned.
     public entry fun initialize(deployer: &signer, manager_address: address) acquires Manager {
-        let manager = borrow_global_mut<Manager>(@meridian_manager);
+        let manager = borrow_global_mut<Manager>(@meridian_manager_interface);
         manager.manager_address = manager_address;
     }
     
@@ -104,13 +104,13 @@ module meridian_manager::manager {
     /// Check if an account is the current manager.
     public fun is_authorized(account: &signer): bool acquires Manager {
         assert!(initialized(), ERR_MANAGER_UNINITIALIZED);
-        borrow_global<Manager>(@meridian_manager).manager_address == signer::address_of(account)
+        borrow_global<Manager>(@meridian_manager_interface).manager_address == signer::address_of(account)
     }
 
     /// Query if an address it associated with the current manager
     public fun is_authorized_address(account_addr: address): bool acquires Manager {
         assert!(initialized(), ERR_MANAGER_UNINITIALIZED);
-        borrow_global<Manager>(@meridian_manager).manager_address == account_addr
+        borrow_global<Manager>(@meridian_manager_interface).manager_address == account_addr
     }
 
     /// Upgrade or publish modules under the manager's resource account
@@ -121,12 +121,12 @@ module meridian_manager::manager {
     // Public Getters
 
     public fun initialized(): bool {
-        exists<Manager>(@meridian_manager)
+        exists<Manager>(@meridian_manager_interface)
     }
 
     #[view]
     public fun manager_address(): address acquires Manager {
-        borrow_global<Manager>(@meridian_manager).manager_address
+        borrow_global<Manager>(@meridian_manager_interface).manager_address
     }
 
     //
@@ -139,7 +139,7 @@ module meridian_manager::manager {
         // create this module's deployer account to initialize from. This is important as various modules
         // may differ in the deployer address used. We do not call `create_account_for_test` as modules may
         // also share the deployer
-        let deployer = account::create_signer_for_test(@meridian_manager);
+        let deployer = account::create_signer_for_test(@meridian_manager_interface);
         if (!account::exists_at(manager_address)) _ = account::create_account_for_test(manager_address);
 
         init_module(&deployer);

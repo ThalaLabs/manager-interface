@@ -3,7 +3,7 @@ name = "MeridianManager"
 version = "1.0.0"
 
 [addresses]
-meridian_manager = "aaf85d946be8ce7d3d25891fafc51368543483188e749813d3effe8981777531"
+meridian_manager_interface = "aaf85d946be8ce7d3d25891fafc51368543483188e749813d3effe8981777531"
 
 [dependencies.AptosFramework]
 git = "https://github.com/movementlabsxyz/aptos-core.git"
