@@ -5,8 +5,8 @@ version = "1.0.0"
 [addresses]
 # movement account derive-resource-account-address --address 0x880fdc380c6b0e8548b37a3a96b2a1da5459580b2eeadd8565f5b5cddc87b78b --seed meridian_manager --seed-encoding utf8
 # movement move create-resource-account-and-publish-package --address-name meridian_manager --seed meridian_manager --seed-encoding utf8 --included-artifacts none
-meridian_manager = "9ee12b57e9448a0170900a511387b31a163f5e7b3bc77c2b8b7d97285c2cdefa"
-meridian_manager_deployer = "0x3420649a69d0845f49f591ba2aa6cf7ae223cab41c1de46dd15d854d047c3d64"
+meridian_manager = "aaf85d946be8ce7d3d25891fafc51368543483188e749813d3effe8981777531"
+meridian_manager_deployer = "0x880fdc380c6b0e8548b37a3a96b2a1da5459580b2eeadd8565f5b5cddc87b78b"
 
 [dependencies.AptosFramework]
 git = "https://github.com/movementlabsxyz/aptos-core.git"
